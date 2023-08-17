@@ -7,6 +7,8 @@ function calculateTriangleArea() {
     const triangleArea = 0.5 * baseField * heightField;
     const areaResult = document.getElementById('areaResult');
     areaResult.innerText = triangleArea;
+    addCalculationEntry('Triangle', triangleArea);
+
 }
 
 // Rectangle Area Calculate
@@ -18,6 +20,7 @@ function calculateRectangleArea() {
     const rectangleArea = widthField * lengthField;
     const rectangleAreaResult = document.getElementById('rectangle-area');
     rectangleAreaResult.innerText = rectangleArea;
+    addCalculationEntry('Rectangle', rectangleArea);
 }
 
 // Parallelogram Area Calculate
@@ -27,6 +30,9 @@ function calculateParallelogramArea() {
     const parallelogramArea = base * height;
 
     setElementInnerText('parallelogram-area', parallelogramArea);
+
+    // Calculation of area
+    addCalculationEntry('parallelogram', parallelogramArea);
 }
 
 // Ellipse Area Calculate
@@ -36,6 +42,8 @@ function calculateEllipseArea() {
     const ellipseArea = (Math.PI * firstRadius * secondRadius).toFixed(2);
 
     setElementInnerText('ellipse-area', ellipseArea);
+    addCalculationEntry('Ellipse', ellipseArea);
+
 }
 // Common function to get input id
 
@@ -49,5 +57,16 @@ function getInputValue(fieldId) {
 function setElementInnerText(elementId, area) {
     const element = document.getElementById(elementId);
     element.innerText = area;
+
+}
+
+function addCalculationEntry(areaType, area) {
+    const calculationEntry = document.getElementById('calculation-entry');
+    const p = document.createElement('p');
+    const count = calculationEntry.childElementCount;
+    p.classList.add('my-4')
+    p.innerHTML = `${count + 1}. ${areaType} ${area} cm<sup>2</sup> <button class="btn btn-sm btn-success">Convert</button>`;
+
+    calculationEntry.appendChild(p);
 
 }
